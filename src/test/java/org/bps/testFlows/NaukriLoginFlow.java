@@ -17,7 +17,7 @@ public class NaukriLoginFlow extends BaseFlow{
         loginPage
                 .clickOnLandingPageLoginButton()
                 .verifyLoginForm()
-                .enterLoginCred("bps.brijendra@gmail.com","Brij@9926744606")
+                .enterLoginCred("RandomUname","RandomPass")
                 .verifyLoginIsSuccessful("Brijendra Singh");
         return  this;
     }
