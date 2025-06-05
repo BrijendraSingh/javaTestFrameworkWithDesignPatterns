@@ -1,5 +1,6 @@
 package org.bps.testFlows;
 
+import org.bps.config.ConfigLoader;
 import org.bps.pom.LoginPage;
 import org.openqa.selenium.WebDriver;
 
@@ -13,11 +14,11 @@ public class NaukriLoginFlow extends BaseFlow{
 
     public NaukriLoginFlow performLoginToNaukriPortal(){
         System.out.println("naukri login step");
-        driver.navigate().to("https://www.naukri.com");
+        driver.navigate().to(ConfigLoader.getAppUrl());
         loginPage
                 .clickOnLandingPageLoginButton()
                 .verifyLoginForm()
-                .enterLoginCred("RandomUname","RandomPass")
+                .enterLoginCred(ConfigLoader.getUname(),ConfigLoader.getPassword())
                 .verifyLoginIsSuccessful("Brijendra Singh");
         return  this;
     }

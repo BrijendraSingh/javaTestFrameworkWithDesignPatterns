@@ -1,5 +1,7 @@
 package org.bps.hooks;
 
+import org.bps.config.ConfigLoader;
+import org.bps.config.TestEnvironment;
 import org.openqa.selenium.WebDriver;
 import org.bps.browser.ResolveBrowser;
 import org.bps.testFlows.JobApplicantFlow;
@@ -14,7 +16,12 @@ public class BaseTest {
     @BeforeMethod
     @Parameters("browser")
     public void testSetup(String browser){
-        driver = new ResolveBrowser().resolve(browser);
+        TestEnvironment.set();
+        if(browser!=null) {
+            driver = new ResolveBrowser().resolve(browser);
+        } else{
+            driver = new ResolveBrowser().resolve(ConfigLoader.getBrowser());
+        }
         this.jobApplicant = new JobApplicantFlow(driver);
         System.out.println("Test Setup");
     }
